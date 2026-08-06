@@ -1,5 +1,5 @@
-// Real Indian Market Flagship Automotive Seeder
-// Contains verified OEM homologation specs and reliable CDN image links for instantaneous Supabase database seeding.
+// Real Indian Market Flagship Automotive Seeder & Legacy Cleanup Controller
+// Uploads verified OEM homologation specs with pristine local studio renders into Supabase DB while purging legacy dummy test data.
 
 const REAL_VEHICLES_DATASET = [
   {
@@ -7,17 +7,17 @@ const REAL_VEHICLES_DATASET = [
     type: "car",
     fuel: "diesel",
     brand: "Mahindra & Mahindra",
-    model: "Thar ROXX AX7L 4x4 Diesel Automatic",
+    model: "Thar ROXX AX7L 4x4 Diesel Auto",
     price_formatted: "₹ 22.49 Lakh",
     price_val: 22.49,
     power_bhp: 172.0,
     torque_nm: 370.0,
     mileage_km: 15.2,
     safety_stars: 5,
-    transmission: "6-Speed Torque Converter Automatic with 4WD & Crawl Mode",
+    transmission: "6-Speed Automatic with 4WD & Crawl Guidance",
     top_speed_kmh: 165,
-    image_url: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
-    description: "The long-awaited 5-Door architectural iteration of Mahindra's off-road icon. Built on an all-new M-Glyde 3-piece longitudinal ladder frame with Frequency Selective Damping (FSD) and electronic differentials.",
+    image_url: "./assets/thar_roxx_studio.png",
+    description: "The long-awaited 5-Door architectural iteration of Mahindra's off-road icon. Built on an all-new M-Glyde longitudinal ladder frame with Frequency Selective Damping (FSD) and electronic differentials.",
     key_features: [
       "IntelliTurn Off-Road Maneuvering Architecture",
       "Panoramic Skyroof & Harman Kardon 9-Speaker Audio",
@@ -45,7 +45,7 @@ const REAL_VEHICLES_DATASET = [
         gearbox: "6-Speed Automatic Transmission (Aisin)",
         drivetrain: "4WD with High/Low Range Transfer Case & Electric Locking Differential",
         acceleration0to100: "10.2 Seconds",
-        topSpeed: "165 KM/H (Electronically Limited for Stability)",
+        topSpeed: "165 KM/H (Electronically Limited)",
         emissionNorm: "BS6 Phase 2 / RDE Compliant"
       },
       dimensions: {
@@ -67,7 +67,7 @@ const REAL_VEHICLES_DATASET = [
         tyreSize: "255 / 60 R19 All-Terrain Radials",
         wheelType: "19-inch Diamond-Cut Dual-Tone Alloy Wheels",
         spareWheel: "255 / 60 R19 Alloy Spare Tailgate Mounted",
-        absSystem: "Dual-Channel Off-Road Calibrated ABS with Electronic Brake Pre-fill"
+        absSystem: "Dual-Channel Off-Road Calibrated ABS"
       },
       technologyAndSafety: {
         ncapRating: "5-Star Bharat NCAP Certified Structural Frame",
@@ -91,25 +91,25 @@ const REAL_VEHICLES_DATASET = [
     torque_nm: 215.0,
     mileage_km: 489.0,
     safety_stars: 5,
-    transmission: "Single-Speed Fixed Gear Direct Drive with Multi-Level Regen",
+    transmission: "Single-Speed Fixed Gear Direct Drive with Regen",
     top_speed_kmh: 150,
-    image_url: "https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80",
-    description: "India's highest selling compact electric SUV now equipped with an enlarged 45 kWh prismatic high-density LFP cell battery architecture delivering an exhaustive 489 km certified range.",
+    image_url: "./assets/nexon_ev_studio.png",
+    description: "India's premier compact electric SUV now equipped with an enlarged 45 kWh prismatic high-density LFP cell battery architecture delivering an exhaustive 489 km certified range.",
     key_features: [
       "45 kWh LFP Prismatic High-Density Battery",
-      "V2L (Vehicle-to-Load) 3.3 kW Auxiliary AC Discharge",
+      "V2L (Vehicle-to-Load) 3.3 kW AC Discharge",
       "Panoramax Cinematic Glass Sunroof",
-      "Arcade.ev App Suite with YouTube & Disney+ Streaming",
+      "Arcade.ev App Suite with YouTube Streaming",
       "JBL 9-Speaker Cinematic Surround Audio System"
     ],
     pros: [
       "Genuine real-world highway range approaching 350-380 kilometers per fast charge",
-      "Vehicle-to-Load capability allows powering home appliances or camping equipment directly",
+      "Vehicle-to-Load capability allows powering home appliances directly",
       "Whisper-quiet electric refinement coupled with prompt linear electronic acceleration"
     ],
     cons: [
       "Rear seat knee elevation slightly higher due to floor-mounted battery cell packaging",
-      "Public rapid highway charging stations require proactive routing on inter-state expeditions"
+      "Public rapid highway charging stations require proactive routing"
     ],
     default_loan_years: 5,
     default_roi: 8.5,
@@ -152,7 +152,7 @@ const REAL_VEHICLES_DATASET = [
         adasFunctions: "Blind Spot View Monitor via Turn Signals, 360-Degree Surround Camera Array",
         infotainment: "12.3-inch Cinematic Harman Touchscreen with Wireless Connectivity",
         audioArchitecture: "JBL 9-Speaker Studio Audio Suite with External Subwoofer",
-        connectivity: "ZConnect Telematics with Remote Battery Condition Pre-cooling & Geo-Fencing"
+        connectivity: "ZConnect Telematics with Remote Battery Condition Pre-cooling"
       }
     }
   },
@@ -161,7 +161,7 @@ const REAL_VEHICLES_DATASET = [
     type: "car",
     fuel: "hybrid",
     brand: "Toyota Kirloskar Motor",
-    model: "Innova Hycross ZX (O) 5th-Gen Hybrid",
+    model: "Innova Hycross ZX (O) Hybrid",
     price_formatted: "₹ 30.98 Lakh",
     price_val: 30.98,
     power_bhp: 183.7,
@@ -170,7 +170,7 @@ const REAL_VEHICLES_DATASET = [
     safety_stars: 5,
     transmission: "e-Drive Electronically Controlled CVT (e-CVT)",
     top_speed_kmh: 180,
-    image_url: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
+    image_url: "./assets/innova_hycross_studio.png",
     description: "Toyota's flagship multi-purpose touring luxury MPV engineered upon the monocoque TNGA-C global platform with an ultra-efficient 5th-Gen self-charging hybrid dynamic motor system.",
     key_features: [
       "5th-Gen Self-Charging Strong Hybrid Powertrain",
@@ -185,8 +185,8 @@ const REAL_VEHICLES_DATASET = [
       "Monocoque structure drastically reduces chassis vibration and highway body roll"
     ],
     cons: [
-      "Extended booking waiting period exceeding 6 months for higher ZX Hybrid trims",
-      "Absence of manual transmission or traditional diesel alternatives for traditionalists"
+      "Extended booking waiting period for higher ZX Hybrid trims",
+      "Absence of manual transmission alternatives for traditionalists"
     ],
     default_loan_years: 5,
     default_roi: 8.8,
@@ -234,6 +234,82 @@ const REAL_VEHICLES_DATASET = [
     }
   },
   {
+    id: "bmw-m340i-xdrive",
+    type: "car",
+    fuel: "petrol",
+    brand: "BMW India Motorsport",
+    model: "M340i xDrive Sedan Shadow Edition",
+    price_formatted: "₹ 74.90 Lakh",
+    price_val: 74.90,
+    power_bhp: 382.0,
+    torque_nm: 500.0,
+    mileage_km: 13.0,
+    safety_stars: 5,
+    transmission: "8-Speed Steptronic Sport Automatic with Launch Control",
+    top_speed_kmh: 250,
+    image_url: "./assets/sport_performance_sedan_1785997001737.png",
+    description: "The uncompromised sports sedan benchmark. Powered by BMW's legendary 3.0-liter turbocharged straight-six engine transmitting 382 horsepower to all four wheels via precision xDrive architecture.",
+    key_features: [
+      "3.0-Liter M TwinPower Turbo Inline-6 Engine",
+      "BMW xDrive Intelligent All-Wheel Drive",
+      "M Sport Differential & Adaptive M Suspension",
+      "Harman Kardon 16-Speaker Surround Sound"
+    ],
+    pros: [
+      "Explosive zero-to-hundred acceleration in just 4.4 seconds with inline-six engine symphony",
+      "Intelligent xDrive all-wheel drive generates immense cornering grip in all weather conditions",
+      "Ideal 50:50 axial balance and adaptive damping make it comfortable for daily high-speed transport"
+    ],
+    cons: [
+      "130mm ground clearance demands mindful navigation over steep residential speed-breakers",
+      "Run-flat performance low-profile tyres generate firmer road feedback"
+    ],
+    default_loan_years: 5,
+    default_roi: 8.9,
+    specs_matrix: {
+      powertrain: {
+        engine: "2998 cc M TwinPower Turbo 6-Cylinder Inline Petrol Engine",
+        cylinders: "6 Cylinders In-Line, 24 Valves, High Precision Direct Injection",
+        power: "382 BHP @ 5800 - 6500 RPM",
+        torque: "500 Nm @ 1800 - 5000 RPM",
+        gearbox: "8-Speed M Steptronic Sport Transmission with Gearshift Paddles",
+        drivetrain: "BMW xDrive Intelligent All-Wheel Drive with Rear-Wheel Bias & M Differential",
+        acceleration0to100: "4.4 Seconds (Class Leading Sprint)",
+        topSpeed: "250 KM/H (Electronically Limited)",
+        emissionNorm: "BS6 Phase 2 / Euro 6d Standard"
+      },
+      dimensions: {
+        length: "4713 mm",
+        width: "1827 mm",
+        height: "1440 mm",
+        wheelbase: "2851 mm",
+        groundClearance: "130 mm (High-Performance Aerodynamic Posture)",
+        kerbWeight: "1745 kg (50:50 Ideal Weight Distribution)",
+        turningRadius: "5.7 Meters",
+        frontSuspension: "M Sport Adaptive Suspension with Electronically Controlled Dampers",
+        rearSuspension: "Five-Link Rear Axle with Adaptive M Elastokinetic Geometry",
+        bootSpace: "480 Liters Executive Trunk",
+        fuelCapacity: "59 Liters High-Octane Reservoir"
+      },
+      brakesAndWheels: {
+        frontBrake: "348mm Ventilated M Sport Discs with 4-Piston Fixed Calipers (Blue Finish)",
+        rearBrake: "345mm Ventilated M Sport Discs with Floating Calipers",
+        tyreSize: "225/40 R19 Front | 255/35 R19 Rear (Pirelli P-Zero Runflats)",
+        wheelType: "19-inch M Light Alloy Double-Spoke Style 792 M Bicolor",
+        spareWheel: "Space-Saver Emergency Tyre Kit in Boot",
+        absSystem: "Dynamic Stability Control (DSC) with M Dynamic Mode (MDM)"
+      },
+      technologyAndSafety: {
+        ncapRating: "5-Star Euro NCAP Structural Safety Framework",
+        airbagCount: "6 Airbags with Dynamic Brake Lights & Crash Sensor",
+        adasFunctions: "Driving Assistant (Lane Departure Warning, Front Collision Mitigation)",
+        infotainment: "BMW Curved Display (12.3-inch Inst. Cluster + 14.9-inch Control Screen, iDrive 8.5)",
+        audioArchitecture: "Harman Kardon 16-Speaker Surround Sound System (464W Digital Amplifier)",
+        connectivity: "My BMW App ConnectedDrive Telematics with Remote 3D View"
+      }
+    }
+  },
+  {
     id: "guerrilla-450",
     type: "bike",
     fuel: "petrol",
@@ -247,7 +323,7 @@ const REAL_VEHICLES_DATASET = [
     safety_stars: 5,
     transmission: "6-Speed Constant Mesh with Assist & Slipper Clutch",
     top_speed_kmh: 158,
-    image_url: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=1200&q=80",
+    image_url: "./assets/guerrilla_450_studio.png",
     description: "A pure athletic urban roadster designed around Royal Enfield's high-revving liquid-cooled Sherpa 452cc motor. Engineered with shorter sport wheelbase geometry and agile street ergonomics.",
     key_features: [
       "Sherpa 452cc Liquid-Cooled 4-Valve Engine",
@@ -263,7 +339,7 @@ const REAL_VEHICLES_DATASET = [
     ],
     cons: [
       "Compact 11-liter fuel tank requires frequent stops during multi-day cross-country touring",
-      "Firm suspension damping prioritizes handling precision over plush pothole absorption"
+      "Firm suspension damping prioritizes handling precision"
     ],
     default_loan_years: 3,
     default_roi: 9.5,
@@ -324,7 +400,7 @@ const REAL_VEHICLES_DATASET = [
     safety_stars: 5,
     transmission: "6-Speed with Bi-Directional Quickshifter+ & Slipper Clutch",
     top_speed_kmh: 168,
-    image_url: "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=1200&q=80",
+    image_url: "./assets/duke_390_studio.png",
     description: "The third generation of KTM's lethal streetfighter corner rocket. Equipped with an enlarged 399cc LC4c engine, adjustable WP Apex suspension architecture, and launch control electronics.",
     key_features: [
       "399cc LC4c Liquid-Cooled High-Output Engine",
@@ -397,12 +473,22 @@ window.seedRealVehiclesToSupabase = async function() {
 
   const btn = document.getElementById("btn-seed-cloud");
   if (btn) {
-    btn.innerHTML = "⏳ Uploading 5+ Real OEM Vehicles to Supabase Postgres...";
+    btn.innerHTML = "⏳ Purging dummy data & Syncing 6 Real Flagship Models...";
     btn.disabled = true;
     btn.style.background = "#0284c7";
   }
 
-  console.log("Starting batch upload of verified Indian showroom dataset...");
+  console.log("Step 1: Cleaning up legacy dummy records from Supabase Postgres...");
+  try {
+    await window.supabaseClient
+      .from('vehicles')
+      .delete()
+      .in('id', ['xuv700-ax7l', 'himalayan-450', 'dummy-car', 'test']);
+  } catch (err) {
+    console.warn("Notice during cleanup:", err);
+  }
+
+  console.log("Step 2: Starting batch upload of verified Indian showroom dataset...");
   let successCount = 0;
   let failCount = 0;
 
@@ -451,12 +537,12 @@ window.seedRealVehiclesToSupabase = async function() {
   }
 
   if (btn) {
-    btn.innerHTML = "✅ Database Successfully Seeded! Reloading Catalog...";
+    btn.innerHTML = "✅ Real Catalog Successfully Seeded! Reloading Showroom...";
     btn.style.background = "#059669";
   }
 
   if (window.showToast) {
-    window.showToast(`🚀 Successfully synced ${successCount} real flagship vehicles into Supabase Cloud!`);
+    window.showToast(`🚀 Successfully synced ${successCount} real flagship vehicles and purged dummy products!`);
   }
 
   // Reload page to show real cloud data immediately
