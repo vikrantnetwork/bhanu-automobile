@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoPulse Enterprise — Professional Automotive Specification Platform</title>
+  <meta name="description" content="Professional automotive specification database, side-by-side technical comparison matrix, and real-time news wire.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+
+  <!-- TOP LIVE WIRE TICKER -->
+  <div class="top-live-ticker">
+    <div class="ticker-container">
+      <div class="live-indicator-pill">
+        <span class="live-dot"></span> LIVE WIRE
+      </div>
+      <div class="ticker-text-wrapper">
+        <span id="ticker-text">INDUSTRY REPORT: Certified 520 km endurance range achieved under standard testing cycles.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MASTER EXECUTIVE NAVIGATION -->
+  <header class="primary-header">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">
+        AutoPulse<span class="brand-accent">.Enterprise</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#showroom-section" class="nav-link active">Models & Catalog</a></li>
+        <li><a href="#compare-section" class="nav-link">Spec Compare</a></li>
+        <li><a href="#news-section" class="nav-link">24/7 Live Wire</a></li>
+      </ul>
+      <div class="action-bar">
+        <a href="#compare-section" style="text-decoration: none;">
+          <button class="btn-compare-link" title="Navigate to Comparison Matrix">
+            <span>Compare Matrix</span>
+            <span class="badge-counter" id="compare-count-val">0</span>
+          </button>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROFESSIONAL HERO BANNER -->
+  <section class="catalog-header">
+    <div class="catalog-header-inner">
+      <div class="sub-tagline">Automotive Intelligence & Specification Portal</div>
+      <h1>Verified Vehicle Profiles & Side-by-Side Comparison</h1>
+      <p>Evaluate real-world automotive specifications, analyze price-to-performance variations side-by-side, and track live industry news without page delays.</p>
+    </div>
+  </section>
+
+  <!-- FILTER & SEARCH CONTROLS -->
+  <div class="controls-section" id="showroom-section">
+    <div class="filter-card">
+      <div class="filter-pills">
+        <button class="pill-btn active" data-filter="all">All Catalog Models</button>
+        <button class="pill-btn" data-filter="car">Passenger SUVs & Cars</button>
+        <button class="pill-btn" data-filter="bike">Performance Motorcycles</button>
+        <button class="pill-btn" data-filter="ev">Pure Electric (EV)</button>
+      </div>
+      <div class="search-field">
+        <input type="text" id="search-input" placeholder="Search by brand, model name, ADAS, or fuel architecture..." autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <!-- VEHICLE SHOWROOM GRID -->
+  <main class="main-showroom">
+    <div class="section-heading-row">
+      <h2 class="section-title">Featured Vehicle Profiles</h2>
+      <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">Select 'Add to Compare' for side-by-side metric evaluation</span>
+    </div>
+    
+    <div class="vehicle-grid-layout" id="vehicle-grid">
+      <!-- Dynamically populated via app.js -->
+    </div>
+  </main>
+
+  <!-- SIDE-BY-SIDE TECHNICAL COMPARISON ENGINE -->
+  <section class="compare-container" id="compare-section">
+    <div class="section-heading-row">
+      <h2 class="section-title">Technical Specification Comparison Matrix</h2>
+      <span style="color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">Simultaneous analysis across horsepower, torque, efficiency, and safety</span>
+    </div>
+
+    <div class="compare-table-wrapper" id="compare-table-wrapper">
+      <!-- Comparison table dynamically injected via compare.js -->
+    </div>
+
+    <!-- Professional Editorial Assessment -->
+    <div id="editorial-analysis-content" style="display: none;"></div>
+  </section>
+
+  <!-- REAL-TIME EDITORIAL NEWS STREAM -->
+  <section class="news-editorial-section" id="news-section">
+    <div class="section-heading-row">
+      <h2 class="section-title">Automotive Industry Live Dispatch Stream</h2>
+      <span style="color: var(--brand-cobalt); font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">• Active Journalism Feed</span>
+    </div>
+
+    <div class="news-layout-grid" style="grid-template-columns: 1fr;">
+      <!-- Pure Editorial Read-Only Feed -->
+      <div class="article-feed" id="live-news-list">
+        <!-- populated via liveNews.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- TOAST NOTIFICATION SYSTEM -->
+  <div class="toast-popup-container" id="toast-container"></div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <p>AutoPulse Enterprise Platform • Complete Automotive Discovery & Comparison Intelligence.</p>
+      <p style="margin-top: 6px; font-size: 0.8rem; opacity: 0.7;">Engineered for professional specification integrity and real-time market reporting.</p>
+    </div>
+  </footer>
+
+  <script src="./js/database.js"></script>
+  <script src="./js/compare.js"></script>
+  <script src="./js/liveNews.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

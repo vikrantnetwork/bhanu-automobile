@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Specification Profile — AutoPulse Enterprise</title>
+  <link rel="stylesheet" href="./styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="top-live-ticker">
+    <div class="ticker-container">
+      <div class="live-indicator-pill">
+        <span class="live-dot"></span> LIVE WIRE
+      </div>
+      <div class="ticker-text-wrapper">
+        <span id="ticker-text">SYSTEM DISPATCH: Active vehicle profile analysis online. Verified manufacturers specifications.</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="primary-header">
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo">
+        AutoPulse<span class="brand-accent">.Enterprise</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="index.html#showroom-section" class="nav-link">Models & Catalog</a></li>
+        <li><a href="index.html#compare-section" class="nav-link">Spec Compare</a></li>
+        <li><a href="index.html#news-section" class="nav-link">24/7 Live Wire</a></li>
+      </ul>
+      <div class="action-bar">
+        <a href="index.html#compare-section" class="btn-compare-link">
+          <span>Compare Matrix</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="details-main" id="details-root">
+    <div style="padding: 100px 0; text-align: center;">
+      <h3 style="color: var(--text-muted);">Loading Vehicle Specification Profile...</h3>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <p>AutoPulse Enterprise Platform • Dedicated Vehicle Engineering & Ownership Analysis.</p>
+      <p style="margin-top: 6px; font-size: 0.8rem; opacity: 0.7;">Engineered for professional specification integrity and real-time market reporting.</p>
+    </div>
+  </footer>
+
+  <script src="./js/database.js"></script>
+  <script src="./js/details.js"></script>
+</body>
+</html>
