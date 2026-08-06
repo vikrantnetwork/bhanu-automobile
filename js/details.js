@@ -1,5 +1,5 @@
 // Vehicle Details & Interactive Engineering Controller
-// Powers live EMI engineering calculation, 4-module technical data sheets, and dealership inquiry workflows.
+// Powers live EMI engineering calculation, 4-module technical data sheets, and Supabase cloud dealership inquiry lead capturing.
 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
@@ -226,10 +226,13 @@ function renderVehicleProfile(container, v) {
       </div>
     </section>
 
-    <!-- INTERACTIVE DEALERSHIP INQUIRY PROTOCOL -->
+    <!-- INTERACTIVE DEALERSHIP INQUIRY PROTOCOL (SUPABASE ENABLED) -->
     <section class="dealership-inquiry-box" id="inquiry-section-target">
-      <h3>Schedule Authorized VIP Consultation & Test Drive</h3>
-      <p style="color: var(--text-secondary); font-size: 0.95rem;">Submit your credentials below. An executive product specialist from an authorized ${v.brand} showroom in your vicinity will contact you within 2 hours.</p>
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; margin-bottom: 6px;">
+        <h3 style="margin: 0;">Schedule Authorized VIP Consultation & Test Drive</h3>
+        <span style="background: #e0f2fe; color: #0369a1; font-size: 0.72rem; font-weight: 800; padding: 4px 10px; border-radius: var(--radius-sm); text-transform: uppercase;">⚡ Supabase Cloud Lead Sync</span>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.95rem;">Submit your credentials below. Your reservation will be dispatched in real-time directly to our Supabase cloud CRM for prioritized dealership assignment within 2 hours.</p>
       
       <form id="dealership-booking-form" class="inquiry-form-grid">
         <input type="text" placeholder="Full Name (e.g., Vikram Sharma)" required class="inquiry-input" id="inq-name">
@@ -244,7 +247,7 @@ function renderVehicleProfile(container, v) {
           <option value="Hyderabad Platinum">Hyderabad Platinum</option>
           <option value="Kolkata Central">Kolkata Central</option>
         </select>
-        <button type="submit" class="btn-submit-inquiry">Confirm Test-Drive Booking</button>
+        <button type="submit" class="btn-submit-inquiry" id="inq-submit-btn">Confirm Test-Drive Booking</button>
       </form>
     </section>
 
@@ -315,20 +318,70 @@ function initializeEmiCalculator(vehicle) {
 
 function initializeInquiryForm(vehicle) {
   const form = document.getElementById("dealership-booking-form");
+  const submitBtn = document.getElementById("inq-submit-btn");
   if (!form) return;
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const name = document.getElementById("inq-name").value;
-    const phone = document.getElementById("inq-phone").value;
-    const city = document.getElementById("inq-city").value;
+    const nameInput = document.getElementById("inq-name");
+    const phoneInput = document.getElementById("inq-phone");
+    const cityInput = document.getElementById("inq-city");
+    
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const city = cityInput.value.trim();
     
     const bookingCode = "VIP-" + Math.floor(100000 + Math.random() * 900000);
     
-    alert(`🎉 VIP Consultation Booking Confirmed!\n\nDear ${name},\nYour exclusive inquiry for the ${vehicle.brand} ${vehicle.model} at our ${city} showcase center has been logged.\n\nBooking Reference: ${bookingCode}\nA designated showroom vice-president will call you at +91-${phone} shortly.`);
+    if (submitBtn) {
+      submitBtn.textContent = "Syncing with Supabase Cloud...";
+      submitBtn.disabled = true;
+    }
+
+    let supabaseSuccess = false;
+
+    // Execute real Supabase Postgres insert if client is ready
+    if (window.supabaseClient) {
+      try {
+        const { data, error } = await window.supabaseClient
+          .from('inquiries')
+          .insert([
+            { 
+              booking_code: bookingCode,
+              name: name,
+              phone: phone,
+              city: city,
+              vehicle_id: vehicle.id,
+              vehicle_model: `${vehicle.brand} ${vehicle.model}`,
+              status: 'New Lead',
+              created_at: new Date().toISOString()
+            }
+          ]);
+
+        if (!error) {
+          supabaseSuccess = true;
+          console.log("✅ Lead stored directly in Supabase Postgres Table 'inquiries'");
+        } else {
+          console.warn("Notice: Could not insert into 'inquiries' table. Ensure SQL table exists in Supabase Dashboard:", error.message);
+        }
+      } catch (err) {
+        console.error("Supabase request error:", err);
+      }
+    }
+
+    if (submitBtn) {
+      submitBtn.textContent = "Confirm Test-Drive Booking";
+      submitBtn.disabled = false;
+    }
+
+    const cloudMsg = supabaseSuccess ? 
+      "✅ Real-Time Lead synced directly into your Supabase Cloud Database ('inquiries' table)!" :
+      "ℹ️ Verified locally (To store in cloud, run the table setup SQL in your Supabase dashboard).";
+
+    alert(`🎉 VIP Consultation Booking Confirmed!\n\nDear ${name},\nYour exclusive inquiry for the ${vehicle.brand} ${vehicle.model} at our ${city} showcase center has been registered.\n\nBooking Reference: ${bookingCode}\n${cloudMsg}\n\nA designated showroom executive will contact you at +91-${phone} shortly.`);
     
     if (window.showToast) {
-      window.showToast(`Booking ${bookingCode} Registered for ${vehicle.model}!`);
+      window.showToast(`Booking ${bookingCode} Registered in System!`);
     }
 
     form.reset();

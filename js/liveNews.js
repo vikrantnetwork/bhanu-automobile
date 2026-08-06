@@ -1,5 +1,5 @@
 // Real-Time Automotive News Feed & Live Ticker Dispatcher
-// Powers instantaneous industry journalism across public portal.
+// Integrated with Supabase cloud database for real-time journalism streaming.
 
 const INITIAL_NEWS_ITEMS = [
   {
@@ -39,9 +39,9 @@ function renderNewsFeed() {
   if (!container) return;
 
   container.innerHTML = activeNewsFeed.map(item => `
-    <div class="editorial-card" id="${item.id}">
+    <div class="editorial-card ${item.isCloud ? 'fresh-alert' : ''}" id="${item.id}">
       <div class="editorial-meta">
-        <span class="time-badge">${item.timeAgo}</span>
+        <span class="time-badge">${item.isCloud ? '⚡ SUPABASE CLOUD STREAM' : item.timeAgo}</span>
         <span class="beat-category">${item.category}</span>
       </div>
       <h3 class="editorial-headline">${item.title}</h3>
@@ -60,6 +60,38 @@ function renderNewsFeed() {
   }
 }
 
+// Fetch dynamic real-time bulletins from Supabase cloud if available
+async function syncSupabaseNews() {
+  if (!window.supabaseClient) return;
+
+  try {
+    const { data, error } = await window.supabaseClient
+      .from('live_news')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(15);
+
+    if (!error && data && data.length > 0) {
+      console.log(`⚡ Fetched ${data.length} news bulletins from Supabase cloud.`);
+      const cloudItems = data.map(item => ({
+        id: item.id || "cloud-" + Math.random(),
+        timeAgo: "Live via Cloud",
+        category: item.category || "BREAKING BULLETIN",
+        title: item.title,
+        body: item.body || item.content,
+        isCloud: true
+      }));
+
+      // Combine cloud news first, then initial items
+      activeNewsFeed = [...cloudItems, ...INITIAL_NEWS_ITEMS];
+      renderNewsFeed();
+    }
+  } catch (e) {
+    console.log("Using default curated editorial stream.");
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderNewsFeed();
+  syncSupabaseNews();
 });
