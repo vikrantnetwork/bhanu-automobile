@@ -1,7 +1,7 @@
 // Vehicle Details & Interactive Engineering Controller
 // Powers live EMI engineering calculation, 4-module technical data sheets, and Supabase cloud dealership inquiry lead capturing.
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const params = new URLSearchParams(window.location.search);
   const vehicleId = params.get('id');
   const container = document.getElementById("details-root");
@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!vehicleId) {
     showErrorState(container, "No Model Identifier Specified", "Please select a valid vehicle profile from the main showroom catalog.");
     return;
+  }
+
+  // Synchronize with Supabase cloud DB first so dynamically loaded vehicles resolve accurately
+  if (typeof syncVehiclesWithSupabase === "function") {
+    await syncVehiclesWithSupabase();
   }
 
   const vehicle = typeof getVehicleById === 'function' ? getVehicleById(vehicleId) : null;
@@ -215,7 +220,7 @@ function renderVehicleProfile(container, v) {
           <table class="tech-table">
             <tbody>
               <tr><th>NCAP Crash Test Rating</th><td>${tech.ncapRating || "5-Star Structural Standard"}</td></tr>
-              <tr><th>Airbag Deployment System</th><td>${tech.airbagCount || "Full Surrender Airbag Protection"}</td></tr>
+              <tr><th>Airbag Deployment System</th><td>${tech.airbagCount || "Full Surrounding Airbag Protection"}</td></tr>
               <tr><th>Active ADAS Safety Functions</th><td>${tech.adasFunctions || "Electronic Stability & Traction Control"}</td></tr>
               <tr><th>Cockpit Infotainment Display</th><td>${tech.infotainment || "High-Definition Digital Dash"}</td></tr>
               <tr><th>Acoustic & Audio Architecture</th><td>${tech.audioArchitecture || "Premium Multi-Speaker Audio Suite"}</td></tr>

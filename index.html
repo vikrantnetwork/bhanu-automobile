@@ -60,6 +60,24 @@
     </div>
   </section>
 
+  <!-- SUPABASE CLOUD SYNC BANNER (APPEARS WHEN DATABASE TABLE IS EMPTY) -->
+  <div id="cloud-seed-banner-container" style="max-width: 1300px; margin: 20px auto 0 auto; padding: 0 20px; display: none;">
+    <div style="background: #eff6ff; border: 1px solid var(--brand-cobalt); padding: 18px 24px; border-radius: var(--radius-md); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; box-shadow: var(--shadow-sm);">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span style="background: #1e3a8a; color: #ffffff; font-size: 0.72rem; padding: 3px 8px; border-radius: var(--radius-sm); font-weight: 800; text-transform: uppercase;">🌐 Supabase Cloud Ready</span>
+          <strong style="color: #1e3a8a; font-size: 1.05rem;">Database Table 'vehicles' Connected (Currently Empty)</strong>
+        </div>
+        <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">
+          Your Supabase database is online. Click the button to instantly seed verified real-world Indian flagship models (Thar ROXX, Nexon EV 45, Innova Hycross, Guerrilla 450, Duke 390) directly into Postgres.
+        </p>
+      </div>
+      <button id="btn-seed-cloud" onclick="window.seedRealVehiclesToSupabase()" style="background: var(--brand-cobalt); color: #ffffff; font-weight: 700; border: none; padding: 12px 22px; border-radius: var(--radius-sm); font-size: 0.92rem; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 12px rgba(37,99,235,0.25); white-space: nowrap;">
+        ⚡ Populate Real Indian Showroom Dataset
+      </button>
+    </div>
+  </div>
+
   <!-- FILTER & SEARCH CONTROLS -->
   <div class="controls-section" id="showroom-section">
     <div class="filter-card">
@@ -130,6 +148,7 @@
 
   <script src="./js/database.js"></script>
   <script src="./js/supabaseClient.js"></script>
+  <script src="./js/seeder.js"></script>
   <script src="./js/compare.js"></script>
   <script src="./js/liveNews.js"></script>
   <script src="./js/app.js"></script>
